@@ -2,7 +2,7 @@
 
 ## Introduction
 
-HaqDaari is an AI-powered autonomous agent that helps Indian citizens discover and apply for government welfare schemes. The system addresses a critical problem: while 750+ government schemes exist across central and state levels, 40-60% of eligible citizens never claim benefits due to awareness gaps, complex forms, language barriers, and digital illiteracy. This results in Rs 1.5 lakh crore of unclaimed welfare benefits annually.
+HaqDaari is an AI-powered autonomous agent that helps Indian citizens discover and apply for government welfare schemes. The system addresses a critical problem: while 750+ government schemes exist across central and state levels, 40-60% of eligible citizens never claim benefits due to awareness gaps, complex forms, language barriers, and digital illiteracy. This results in Rs 2.68 lakh crore of unclaimed welfare benefits annually.
 
 The system provides zero-touch eligibility detection, scheme arbitrage analysis, transparent AI operations (Shadow Mode), and offline-capable CSC operator assistance to maximize welfare benefit uptake across India's diverse population.
 
@@ -235,3 +235,4 @@ The system provides zero-touch eligibility detection, scheme arbitrage analysis,
 5. THE MVP SHALL include basic analytics dashboard
 6. Phase 2 SHALL expand scheme coverage from 100 to 750+ schemes, add detailed 
    analytics dashboard for welfare officers, and scale to 1 crore users
+
