@@ -2,7 +2,7 @@
 
 ## Introduction
 
-HaqDaari is an AI-powered autonomous agent that helps Indian citizens discover and apply for government welfare schemes. The system addresses a critical problem: while 850+ government schemes exist across central and state levels, 40-60% of eligible citizens never claim benefits due to awareness gaps, complex forms, language barriers, and digital illiteracy. This results in Rs 1.5 lakh crore of unclaimed welfare benefits annually.
+HaqDaari is an AI-powered autonomous agent that helps Indian citizens discover and apply for government welfare schemes. The system addresses a critical problem: while 750+ government schemes exist across central and state levels, 40-60% of eligible citizens never claim benefits due to awareness gaps, complex forms, language barriers, and digital illiteracy. This results in Rs 1.5 lakh crore of unclaimed welfare benefits annually.
 
 The system provides zero-touch eligibility detection, scheme arbitrage analysis, transparent AI operations (Shadow Mode), and offline-capable CSC operator assistance to maximize welfare benefit uptake across India's diverse population.
 
@@ -35,7 +35,7 @@ The system provides zero-touch eligibility detection, scheme arbitrage analysis,
 1. WHEN a Citizen provides an Aadhaar number with consent, THE Eligibility_Engine SHALL call the Aadhaar_eKYC API to retrieve demographic data
 2. WHEN demographic data is retrieved, THE Eligibility_Engine SHALL extract name, age, gender, and address from the response
 3. WHEN the Aadhaar_eKYC call succeeds, THE Eligibility_Engine SHALL call the DigiLocker_API to fetch income certificates, caste certificates, and land records
-4. WHEN citizen profile data is complete, THE Eligibility_Engine SHALL query the Bedrock_Knowledge_Base with the citizen profile against 850+ Scheme_Rules
+4. WHEN citizen profile data is complete, THE Eligibility_Engine SHALL query the Bedrock_Knowledge_Base with the citizen profile against 750+ Scheme_Rules
 5. WHEN scheme matching completes, THE HaqDaari_System SHALL return all eligible schemes within 10 seconds
 6. IF the Aadhaar_eKYC API fails, THEN THE HaqDaari_System SHALL return an error message and request the Citizen to retry
 7. IF the DigiLocker_API returns no documents, THEN THE Eligibility_Engine SHALL proceed with demographic data only and flag missing documents
@@ -99,7 +99,7 @@ The system provides zero-touch eligibility detection, scheme arbitrage analysis,
 
 ### Requirement 6: Scheme Knowledge Base Management
 
-**User Story:** As a system administrator, I want to maintain up-to-date scheme rules for 850+ government programs, so that citizens receive accurate eligibility information.
+**User Story:** As a system administrator, I want to maintain up-to-date scheme rules for 750+ government programs, so that citizens receive accurate eligibility information.
 
 #### Acceptance Criteria
 
@@ -234,5 +234,6 @@ The system provides zero-touch eligibility detection, scheme arbitrage analysis,
 5. THE MVP SHALL include basic analytics dashboard
 6. THE MVP SHALL include all 5 core features: Zero-Touch Eligibility, 
    Scheme Arbitrage, Shadow Mode, CSC Co-Pilot, and WhatsApp + PWA
-7. Phase 2 SHALL expand scheme coverage from 100 to 850+ schemes 
+7. Phase 2 SHALL expand scheme coverage from 100 to 750+ schemes 
    and add analytics dashboard for welfare officers
+
