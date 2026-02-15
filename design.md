@@ -1354,4 +1354,3 @@ Lambda, API Gateway, and DynamoDB at MVP scale.
 
 - **Gupshup**: WhatsApp Business API provider for messaging
 - **Vosk**: Open-source speech recognition toolkit for offline STT
-
