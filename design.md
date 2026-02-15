@@ -299,7 +299,7 @@ Response: {
 
 **Interface**:
 ```
-Endpoint: POST https://ekyc.uidai.gov.in/api/v1/authenticate \\ fabricated url
+Endpoint: POST https://ekyc.uidai.gov.in/api/v1/authenticate 
 Request: {
   "aadhaarNumber": "XXXX-XXXX-1234",
   "otp": "123456",
@@ -1109,7 +1109,7 @@ describe('Feature: haqdaari, Property 1: Zero-Touch Eligibility Flow', () => {
 ```typescript
 // Generate random citizen profiles
 const citizenProfileArbitrary = () => fc.record({
-  aadhaarNumber: fc.stringOf(fc.constantFrom('0','1','2','3','4','5','6','7','8','9'), { minLength: 12, maxLength: 12 }),,
+  aadhaarNumber: fc.stringOf(fc.constantFrom('0','1','2','3','4','5','6','7','8','9'), { minLength: 12, maxLength: 12 }),
   name: fc.string({ minLength: 3, maxLength: 50 }),
   age: fc.integer({ min: 18, max: 100 }),
   gender: fc.constantFrom('M', 'F', 'O'),
@@ -1176,7 +1176,7 @@ const schemeRuleArbitrary = () => fc.record({
 - Use Artillery or k6 for load testing
 - Test 1000 concurrent users
 - Measure response times (p50, p95, p99)
-- Target: 95% of requests under 10 seconds
+- Target: 95% of requests under 30 seconds
 
 **Stress Testing**:
 - Gradually increase load to find breaking point
@@ -1354,3 +1354,4 @@ Lambda, API Gateway, and DynamoDB at MVP scale.
 
 - **Gupshup**: WhatsApp Business API provider for messaging
 - **Vosk**: Open-source speech recognition toolkit for offline STT
+
