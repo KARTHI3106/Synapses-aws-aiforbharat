@@ -234,7 +234,7 @@ Response: {
 #### Bedrock Knowledge Base (RAG)
 - **Vector Store**: Amazon OpenSearch Serverless
 - **Embedding Model**: Amazon Titan Embeddings G1
-- **Data Source**: S3 bucket with 850+ scheme rules in JSON
+- **Data Source**: S3 bucket with 750+ scheme rules in JSON
 - **Chunk Size**: 512 tokens with 50 token overlap
 - **Retrieval**: Top-K=10 with similarity threshold 0.7
 
@@ -410,7 +410,7 @@ Attributes:
 #### S3 Buckets
 
 **haqdaari-scheme-rules**:
-- Purpose: Store 850+ scheme rules for Bedrock Knowledge Base
+- Purpose: Store 750+ scheme rules for Bedrock Knowledge Base
 - Format: JSON files (one per scheme)
 - Versioning: Enabled
 - Lifecycle: No expiration
@@ -1354,3 +1354,4 @@ Lambda, API Gateway, and DynamoDB at MVP scale.
 
 - **Gupshup**: WhatsApp Business API provider for messaging
 - **Vosk**: Open-source speech recognition toolkit for offline STT
+
