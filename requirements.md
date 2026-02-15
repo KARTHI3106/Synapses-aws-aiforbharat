@@ -2,7 +2,7 @@
 
 ## Introduction
 
-HaqDaari is an AI-powered autonomous agent that helps Indian citizens discover and apply for government welfare schemes. The system addresses a critical problem: while 750+ government schemes exist across central and state levels, 40-60% of eligible citizens never claim benefits due to awareness gaps, complex forms, language barriers, and digital illiteracy. This results in Rs 2.68  lakh crore of unclaimed welfare benefits annually.
+HaqDaari is an AI-powered autonomous agent that helps Indian citizens discover and apply for government welfare schemes. The system addresses a critical problem: while 750+ government schemes exist across central and state levels, 40-60% of eligible citizens never claim benefits due to awareness gaps, complex forms, language barriers, and digital illiteracy. This results in Rs 1.5 lakh crore of unclaimed welfare benefits annually.
 
 The system provides zero-touch eligibility detection, scheme arbitrage analysis, transparent AI operations (Shadow Mode), and offline-capable CSC operator assistance to maximize welfare benefit uptake across India's diverse population.
 
@@ -36,7 +36,7 @@ The system provides zero-touch eligibility detection, scheme arbitrage analysis,
 2. WHEN demographic data is retrieved, THE Eligibility_Engine SHALL extract name, age, gender, and address from the response
 3. WHEN the Aadhaar_eKYC call succeeds, THE Eligibility_Engine SHALL call the DigiLocker_API to fetch income certificates, caste certificates, and land records
 4. WHEN citizen profile data is complete, THE Eligibility_Engine SHALL query the Bedrock_Knowledge_Base with the citizen profile against 750+ Scheme_Rules
-5. WHEN scheme matching completes, THE HaqDaari_System SHALL return all eligible schemes within 10 seconds
+5. WHEN scheme matching completes, THE HaqDaari_System SHALL return all eligible schemes within 30 seconds
 6. IF the Aadhaar_eKYC API fails, THEN THE HaqDaari_System SHALL return an error message and request the Citizen to retry
 7. IF the DigiLocker_API returns no documents, THEN THE Eligibility_Engine SHALL proceed with demographic data only and flag missing documents
 8. THE Eligibility_Engine SHALL store citizen consent records with timestamp and purpose in DynamoDB
@@ -157,7 +157,7 @@ The system provides zero-touch eligibility detection, scheme arbitrage analysis,
 #### Acceptance Criteria
 
 1. THE HaqDaari_System SHALL use AWS Lambda for compute to enable automatic scaling
-2. THE Eligibility_Engine SHALL return results within 10 seconds for 95% of requests
+2. THE Eligibility_Engine SHALL return results within 30 seconds for 95% of requests
 3. THE HaqDaari_System SHALL handle 1000 concurrent users without degradation
 4. THE HaqDaari_System SHALL use DynamoDB on-demand pricing to scale with usage
 5. THE HaqDaari_System SHALL cache frequently accessed Scheme_Rules in Amazon ElastiCache to reduce Bedrock API calls
@@ -227,14 +227,11 @@ The system provides zero-touch eligibility detection, scheme arbitrage analysis,
 
 #### Acceptance Criteria
 
-1. THE MVP SHALL support 10,000 concurrent users
-2. THE MVP SHALL include Zero-Touch Eligibility Detection, Shadow Mode, and WhatsApp interface
+1. THE MVP SHALL support 10,000 total users with up to 1,000 concurrent users
+2. THE MVP SHALL include all 5 core features: Zero-Touch Eligibility Engine, 
+   Scheme Arbitrage Detector, Shadow Mode, CSC Co-Pilot, and WhatsApp + PWA interface
 3. THE MVP SHALL support 100 high-impact central government schemes initially
 4. THE MVP SHALL operate in 3 pilot states (to be determined)
 5. THE MVP SHALL include basic analytics dashboard
-6. THE MVP SHALL include all 5 core features: Zero-Touch Eligibility, 
-   Scheme Arbitrage, Shadow Mode, CSC Co-Pilot, and WhatsApp + PWA
-7. Phase 2 SHALL expand scheme coverage from 100 to 750+ schemes 
-   and add analytics dashboard for welfare officers
-
-
+6. Phase 2 SHALL expand scheme coverage from 100 to 750+ schemes, add detailed 
+   analytics dashboard for welfare officers, and scale to 1 crore users
