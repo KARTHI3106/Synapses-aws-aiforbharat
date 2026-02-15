@@ -19,7 +19,7 @@
 
 </div>
 
-## 🎯 The Problem
+## The Problem
 
 > **40–60% of eligible Indian citizens never claim their welfare benefits.**
 
@@ -37,7 +37,7 @@ India has **750+ government welfare schemes** across central and state levels �
 
 ---
 
-## 💡 The Solution
+## The Solution
 
 **HaqDaari** is an AI-powered autonomous agent that acts as a **personal welfare assistant** for every Indian citizen. One Aadhaar number. Zero forms. Full transparency.
 
@@ -50,7 +50,7 @@ Citizen provides Aadhaar → AI fetches profile → Matches 750+ schemes → Aut
 
 ---
 
-## ✨ Five Core Features
+## Five Core Features
 
 ### 1️⃣ Zero-Touch Eligibility Engine
 > _"Just give your Aadhaar — we find every scheme you deserve."
@@ -72,7 +72,7 @@ Citizen provides Aadhaar → AI fetches profile → Matches 750+ schemes → Aut
 > _"Here's exactly what I'll do. You approve. Then I act."
 
 - Every AI action previewed in **simple Hindi** before execution
-- Citizens can approve ✅, modify ✏️, or cancel ❌
+- Citizens can approve , modify , or cancel 
 - Full audit trail: every action logged with timestamp + approval status
 - Post-action feedback: see what was done, reverse within 24 hours
 
@@ -94,7 +94,7 @@ Citizen provides Aadhaar → AI fetches profile → Matches 750+ schemes → Aut
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```mermaid
 graph TB
@@ -171,7 +171,7 @@ graph TB
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
@@ -196,7 +196,7 @@ graph TB
 
 ---
 
-## 💰 Cost Architecture
+##  Cost Architecture
 
 > **Target: < ₹1 per citizen per month at 1 crore users**
 
@@ -214,7 +214,7 @@ graph TB
 
 ---
 
-## 🔒 Security & Compliance
+##  Security & Compliance
 
 | Requirement | Implementation |
 |-------------|---------------|
@@ -230,7 +230,7 @@ graph TB
 
 ---
 
-## 📂 Repository Structure
+##  Repository Structure
 
 ```
 Synapses-aws-aiforbharat/
@@ -248,7 +248,7 @@ Synapses-aws-aiforbharat/
 
 ---
 
-## 📋 Specification Artifacts (Generated with Kiro)
+##  Specification Artifacts (Generated with Kiro)
 
 ### [`requirements.md`](requirements.md)
 - **15 functional requirements** with formal acceptance criteria
@@ -267,38 +267,20 @@ Synapses-aws-aiforbharat/
 
 ---
 
-## 🚀 MVP Roadmap
-
-### Phase 1 — MVP (Current)
-- ✅ 10,000 users (1,000 concurrent)
-- ✅ All 5 core features operational
-- ✅ 100 high-impact central government schemes
-- ✅ 3 pilot states
-- ✅ Basic analytics dashboard
-- ✅ WhatsApp + PWA + CSC channels
-
-### Phase 2 — Scale
-- 🔜 Expand to 750+ schemes (all central + state)
-- 🔜 Advanced analytics dashboard for welfare officers
-- 🔜 Scale to 1 crore users
-- 🔜 Additional regional languages beyond Hindi
-
----
-
-## 🌍 Impact Potential
+## Impact Potential
 
 | Metric | Value |
 |--------|-------|
 | 🇮🇳 **Addressable Population** | 80 crore citizens eligible for welfare schemes |
-| 💸 **Unclaimed Benefits** | ₹2.68 lakh crore annually |
-| 🏢 **CSC Network** | 500,000+ Common Service Centers nationwide |
-| 📱 **WhatsApp Reach** | 500M+ Indian users — largest messaging platform |
-| 🗣️ **Hindi Speakers** | 600M+ native speakers served in their language |
-| ⚡ **2G Compatibility** | Works on basic phones with minimal data |
+|  **Unclaimed Benefits** | ₹2.68 lakh crore annually |
+|  **CSC Network** | 500,000+ Common Service Centers nationwide |
+|  **WhatsApp Reach** | 500M+ Indian users — largest messaging platform |
+|  **Hindi Speakers** | 600M+ native speakers served in their language |
+|  **2G Compatibility** | Works on basic phones with minimal data |
 
 ---
 
-## 👥 Team Synapses
+##  Team Synapses
 
 Built for the **AWS AI for Bharat Hackathon 2025** — solving India's largest welfare delivery gap with serverless AI, India Stack integration, and radical accessibility.
 
