@@ -27,11 +27,11 @@ India has **750+ government welfare schemes** across central and state levels �
 
 | Barrier | Impact |
 |---------|--------|
-| 🔍 **Awareness Gap** | Citizens don't know which schemes exist for them |
-| 📝 **Complex Forms** | Multi-page applications in English intimidate rural users |
-| 🌐 **Language Barriers** | 500M+ Hindi speakers can't navigate English portals |
-| 📵 **Digital Illiteracy** | 65% of rural India has limited smartphone proficiency |
-| 🏢 **CSC Bottlenecks** | 500,000+ CSCs lack tools for efficient citizen assistance |
+|  **Awareness Gap** | Citizens don't know which schemes exist for them |
+|  **Complex Forms** | Multi-page applications in English intimidate rural users |
+|  **Language Barriers** | 500M+ Hindi speakers can't navigate English portals |
+|  **Digital Illiteracy** | 65% of rural India has limited smartphone proficiency |
+|  **CSC Bottlenecks** | 500,000+ CSCs lack tools for efficient citizen assistance |
 
 **Result:** ₹2.68 lakh crore of welfare benefits go unclaimed annually — money that could transform lives.
 
