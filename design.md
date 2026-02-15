@@ -12,75 +12,99 @@ The system follows a serverless, event-driven architecture using AWS services, i
 
 ```mermaid
 graph TB
-    subgraph "Entry Channels"
-        WA[WhatsApp via Gupshup]
-        Voice[Toll-Free Voice]
-        PWA[React PWA]
-        CSC[CSC Kiosk]
+    subgraph Entry["Entry Channels"]
+        WA[WhatsApp via Gupshup]:::entryNode
+        Voice[Toll-Free Voice]:::entryNode
+        PWA[React PWA]:::entryNode
+        CSC[CSC Kiosk]:::entryNode
     end
     
-    subgraph "API Gateway Layer"
-        APIGW[Amazon API Gateway]
-        Transcribe[Amazon Transcribe]
+    subgraph Gateway["API Gateway Layer"]
+        APIGW[Amazon API Gateway]:::gatewayNode
+        Transcribe[Amazon Transcribe STT]:::gatewayNode
+        Polly[Amazon Polly TTS]:::gatewayNode
     end
     
-    subgraph "Orchestration Layer"
-        Lambda[AWS Lambda Orchestrator]
+    subgraph Orchestration["Orchestration Layer"]
+        Lambda[AWS Lambda Orchestrator]:::orchestrationNode
     end
     
-    subgraph "AI Layer"
-        Bedrock[Amazon Bedrock]
-        KB[Bedrock Knowledge Base]
-        S3Schemes[S3 - Scheme Rules]
+    subgraph AI["AI Layer"]
+        Bedrock[Amazon Bedrock]:::aiNode
+        KB[Bedrock Knowledge Base]:::aiNode
+        S3Schemes[S3 Scheme Rules]:::storageNode
     end
     
-    subgraph "India Stack"
-        Aadhaar[Aadhaar eKYC API]
-        DL[DigiLocker API]
-        UPI[UPI Bank Verification]
+    subgraph IndiaStack["India Stack APIs"]
+        Aadhaar[Aadhaar eKYC]:::indiaStackNode
+        DL[DigiLocker]:::indiaStackNode
+        UPI[UPI Verification]:::indiaStackNode
     end
     
-    subgraph "Data Layer"
-        DDB[DynamoDB]
-        S3Data[S3 - Documents]
-        Cache[ElastiCache]
+    subgraph Data["Data Layer"]
+        DDB[DynamoDB]:::dataNode
+        S3Data[S3 Documents]:::storageNode
+        Cache[ElastiCache]:::dataNode
     end
     
-    subgraph "Notification Layer"
-        SNS[Amazon SNS]
-        SES[Amazon SES]
+    subgraph Notifications["Notification Layer"]
+        SNS[Amazon SNS]:::notificationNode
+        SES[Amazon SES]:::notificationNode
     end
     
-    subgraph "Edge Computing"
-        Greengrass[AWS IoT Greengrass]
-        IndexedDB[IndexedDB Local Storage]
+    subgraph Edge["Edge Computing"]
+        Greengrass[AWS IoT Greengrass]:::edgeNode
+        IndexedDB[IndexedDB Storage]:::edgeNode
     end
     
-    WA --> APIGW
-    Voice --> Transcribe
-    PWA --> APIGW
-    CSC --> Greengrass
+    %% Entry to Gateway
+    WA -->|Webhook| APIGW
+    Voice -->|Audio Stream| Transcribe
+    PWA -->|HTTPS| APIGW
+    CSC -->|Local API| Greengrass
     
-    APIGW --> Lambda
-    Transcribe --> Lambda
-    Greengrass --> Lambda
+    %% Gateway to Orchestration
+    APIGW -->|Events| Lambda
+    Transcribe -->|Text| Lambda
+    Greengrass -->|Sync| Lambda
     
-    Lambda --> Bedrock
-    Lambda --> Aadhaar
-    Lambda --> DL
-    Lambda --> UPI
-    Lambda --> DDB
-    Lambda --> S3Data
-    Lambda --> Cache
-    Lambda --> SNS
+    %% Orchestration to AI
+    Lambda -->|Query| Bedrock
+    Bedrock -->|RAG| KB
+    KB -->|Retrieve| S3Schemes
     
-    Bedrock --> KB
-    KB --> S3Schemes
+    %% Orchestration to India Stack
+    Lambda -->|eKYC| Aadhaar
+    Lambda -->|Fetch Docs| DL
+    Lambda -->|Verify Bank| UPI
     
-    Greengrass --> IndexedDB
+    %% Orchestration to Data
+    Lambda -->|Read/Write| DDB
+    Lambda -->|Store/Fetch| S3Data
+    Lambda -->|Cache| Cache
     
-    SNS --> WA
-    SNS --> Voice
+    %% Orchestration to Notifications
+    Lambda -->|Send SMS| SNS
+    Lambda -->|Send Email| SES
+    Lambda -->|Generate Speech| Polly
+    
+    %% Notifications to Entry
+    SNS -.->|SMS/WhatsApp| WA
+    SES -.->|Email| WA
+    Polly -.->|Audio| Voice
+    
+    %% Edge Computing
+    Greengrass -->|Offline Store| IndexedDB
+    
+    classDef entryNode fill:#25D366,stroke:#128C7E,stroke-width:2px,color:#fff
+    classDef gatewayNode fill:#FF9900,stroke:#FF6600,stroke-width:2px,color:#fff
+    classDef orchestrationNode fill:#FF4F00,stroke:#CC3F00,stroke-width:3px,color:#fff
+    classDef aiNode fill:#9B59B6,stroke:#8E44AD,stroke-width:2px,color:#fff
+    classDef indiaStackNode fill:#FF9933,stroke:#138808,stroke-width:2px,color:#fff
+    classDef dataNode fill:#3498DB,stroke:#2980B9,stroke-width:2px,color:#fff
+    classDef storageNode fill:#1ABC9C,stroke:#16A085,stroke-width:2px,color:#fff
+    classDef notificationNode fill:#E74C3C,stroke:#C0392B,stroke-width:2px,color:#fff
+    classDef edgeNode fill:#34495E,stroke:#2C3E50,stroke-width:2px,color:#fff
 ```
 
 ### Component Architecture
@@ -299,7 +323,7 @@ Response: {
 
 **Interface**:
 ```
-Endpoint: POST https://ekyc.uidai.gov.in/api/v1/authenticate 
+Endpoint: POST https://ekyc.uidai.gov.in/api/v1/authenticate \\ fabricated url
 Request: {
   "aadhaarNumber": "XXXX-XXXX-1234",
   "otp": "123456",
@@ -1109,7 +1133,7 @@ describe('Feature: haqdaari, Property 1: Zero-Touch Eligibility Flow', () => {
 ```typescript
 // Generate random citizen profiles
 const citizenProfileArbitrary = () => fc.record({
-  aadhaarNumber: fc.stringOf(fc.constantFrom('0','1','2','3','4','5','6','7','8','9'), { minLength: 12, maxLength: 12 }),
+  aadhaarNumber: fc.stringOf(fc.constantFrom('0','1','2','3','4','5','6','7','8','9'), { minLength: 12, maxLength: 12 }),,
   name: fc.string({ minLength: 3, maxLength: 50 }),
   age: fc.integer({ min: 18, max: 100 }),
   gender: fc.constantFrom('M', 'F', 'O'),
@@ -1176,7 +1200,7 @@ const schemeRuleArbitrary = () => fc.record({
 - Use Artillery or k6 for load testing
 - Test 1000 concurrent users
 - Measure response times (p50, p95, p99)
-- Target: 95% of requests under 30 seconds
+- Target: 95% of requests under 10 seconds
 
 **Stress Testing**:
 - Gradually increase load to find breaking point
