@@ -1,6 +1,6 @@
-# HaqDaari — Complete Setup Guide for Teammates
+# HaqDaari - Complete Setup Guide
 
-> **Read this from top to bottom.** By the end you will have the app running locally OR deployed on AWS, without needing help from anyone.
+> **Read this from top to bottom.** By the end you will have the app running locally OR deployed on AWS.
 
 ---
 
@@ -39,14 +39,14 @@ Install these before starting:
 
 ## PART 1: Local Development (No AWS Needed)
 
-### Step 1 — Clone the Repo
+### Step 1 - Clone the Repo
 
 ```bash
 git clone <repo-url>
 cd HaqDaari-gh/project_files
 ```
 
-### Step 2 — Install Dependencies
+### Step 2 - Install Dependencies
 
 ```bash
 npm install
@@ -56,7 +56,7 @@ This installs all three packages (backend, frontend, shared) via npm workspaces.
 
 > **If `npm install` fails:** Delete `node_modules/` and `package-lock.json`, then retry.
 
-### Step 3 — Start the Backend Server
+### Step 3 - Start the Backend Server
 
 Open a terminal:
 
@@ -70,9 +70,9 @@ You should see:
 ```
 [HaqDaari Backend] Local dev server running on http://localhost:3001
 [HaqDaari Backend] Endpoints:
-  POST /api/eligibility      — Zero-Touch Eligibility Engine
-  POST /api/applications      — Submit application
-  GET  /api/applications      — List applications
+  POST /api/eligibility      - Zero-Touch Eligibility Engine
+  POST /api/applications      - Submit application
+  GET  /api/applications      - List applications
   ...
 ```
 
@@ -85,7 +85,7 @@ You should see:
 >
 > Then retry the `npm run backend:dev` command.
 
-### Step 4 — Start the Frontend
+### Step 4 - Start the Frontend
 
 Open a **second terminal**:
 
@@ -96,7 +96,7 @@ npm run dev
 
 Opens at `http://localhost:5173`. The Vite dev server auto-proxies API calls (`/api/*`) to the backend on port 3001.
 
-### Step 5 — Try the Demo
+### Step 5 - Try the Demo
 
 1. Open `http://localhost:5173` in your browser
 2. Open `http://localhost:5173/onboarding` to go through the **Onboarding** slides (optional) → click "शुरू करें"
@@ -119,9 +119,9 @@ Opens at `http://localhost:5173`. The Vite dev server auto-proxies API calls (`/
 | `999900001111`     | Mahendra Oraon    | ₹10L   | Jharkhand      | ST      | farmer        | ~31              |
 | Any other 12-digit | Ramesh Kumar      | ₹72K   | Uttar Pradesh  | OBC     | farmer        | ~49              |
 
-> Different profiles get different numbers of eligible schemes because the engine is **data-driven** — lower-income citizens naturally qualify for more BPL/poverty schemes.
+> Different profiles get different numbers of eligible schemes because the engine is **data-driven** - lower-income citizens naturally qualify for more BPL/poverty schemes.
 
-### Step 6 — Test the API Directly (Optional)
+### Step 6 - Test the API Directly (Optional)
 
 ```powershell
 # PowerShell
@@ -143,11 +143,11 @@ curl -s -X POST http://localhost:3001/api/eligibility \
 | ------ | --------------------- | ----------------------------------------------------- | ------------------------- |
 | POST   | `/api/eligibility`    | `{"aadhaarNumber":"111122223333"}`                    | Main eligibility check    |
 | POST   | `/api/applications`   | `{"citizenId":"...","schemeId":"PM-KISAN"}`           | Submit application        |
-| GET    | `/api/applications`   | —                                                     | List all applications     |
+| GET    | `/api/applications`   | -                                                     | List all applications     |
 | POST   | `/api/transcribe`     | `{"audioContext":"default"}`                          | Mock Hindi speech-to-text |
 | POST   | `/api/form-fill`      | `{"citizenName":"Sunita Devi","schemeId":"PM-KISAN"}` | Mock AI form fill         |
 | POST   | `/api/knowledge-base` | `{"query":"PM-KISAN eligibility"}`                    | Mock knowledge base Q&A   |
-| GET    | `/api/audit`          | —                                                     | List all audit events     |
+| GET    | `/api/audit`          | -                                                     | List all audit events     |
 
 ---
 
@@ -155,13 +155,13 @@ curl -s -X POST http://localhost:3001/api/eligibility \
 
 > **Only needed if you want to deploy to the cloud.** The local demo above is fully functional without any AWS account.
 
-### Step 1 — Create an AWS Account
+### Step 1 - Create an AWS Account
 
 If you don't have one: [aws.amazon.com/free](https://aws.amazon.com/free)
 
 The free tier covers everything this demo needs ($0-6/month).
 
-### Step 2 — Create an IAM User for CLI Access
+### Step 2 - Create an IAM User for CLI Access
 
 Do NOT use your root account. Create a dedicated IAM user:
 
@@ -181,11 +181,11 @@ Do NOT use your root account. Create a dedicated IAM user:
 5. Click **Create User**
 6. Go to the user → **Security credentials** → **Create access key**
 7. Select **"Command Line Interface (CLI)"** → Check the confirmation → Create
-8. **Save the Access Key ID and Secret Access Key** — you'll need them next
+8. **Save the Access Key ID and Secret Access Key** - you'll need them next
 
 > **Security:** Never commit these keys to git. Never share them in chat/email. Delete the key when you're done.
 
-### Step 3 — Configure AWS CLI
+### Step 3 - Configure AWS CLI
 
 ```bash
 aws configure
@@ -208,7 +208,7 @@ aws sts get-caller-identity
 
 You should see your account ID and IAM user ARN. If this fails, double-check your keys.
 
-> **Using AWS SSO instead?** Run `aws configure sso` and `aws sso login` — Terraform auto-detects SSO credentials.
+> **Using AWS SSO instead?** Run `aws configure sso` and `aws sso login` - Terraform auto-detects SSO credentials.
 >
 > **Multiple AWS profiles?** Set the profile before running Terraform:
 >
@@ -222,7 +222,7 @@ You should see your account ID and IAM user ARN. If this fails, double-check you
 > export AWS_PROFILE=your-profile-name
 > ```
 
-### Step 4 — Deploy Infrastructure with Terraform
+### Step 4 - Deploy Infrastructure with Terraform
 
 ```bash
 cd project_files/infra
@@ -252,7 +252,7 @@ This creates all AWS resources in **ap-south-1 (Mumbai)**:
 
 > **No Terraform?** You can skip this and create resources manually in the AWS Console. See README.md for what each resource does.
 
-### Step 5 — Build and Deploy Backend to Lambda
+### Step 5 - Build and Deploy Backend to Lambda
 
 ```bash
 cd project_files/backend
@@ -282,7 +282,7 @@ aws lambda update-function-code \
 > Compress-Archive -Path dist\* -DestinationPath function.zip -Force
 > ```
 
-### Step 6 — Upload Scheme Data + Frontend
+### Step 6 - Upload Scheme Data + Frontend
 
 ```bash
 # Upload scheme data to S3
@@ -298,7 +298,7 @@ FRONTEND_BUCKET=$(cd ../infra && terraform output -raw s3_frontend_bucket)
 aws s3 sync dist/ s3://$FRONTEND_BUCKET/ --delete
 ```
 
-### Step 7 — Set Up CloudFront (For Public Access)
+### Step 7 - Set Up CloudFront (For Public Access)
 
 The S3 frontend bucket blocks public access (security best practice). To serve the PWA publicly:
 
@@ -312,7 +312,7 @@ The S3 frontend bucket blocks public access (security best practice). To serve t
 
 Your app is now live at `https://d1234abcd.cloudfront.net`
 
-### Step 8 — Verify the Cloud Deployment
+### Step 8 - Verify the Cloud Deployment
 
 ```bash
 # Get your API endpoint
@@ -325,11 +325,11 @@ curl -X POST https://<your-api-endpoint>/api/eligibility \
   -d '{"aadhaarNumber":"111122223333"}'
 ```
 
-### Step 9 — Tear It All Down (When Done)
+### Step 9 - Tear It All Down (When Done)
 
 ```bash
 cd project_files/infra
-terraform destroy   # type 'yes' — deletes ALL AWS resources
+terraform destroy   # type 'yes' - deletes ALL AWS resources
 ```
 
 > This prevents any ongoing charges. Always destroy when you're done demoing.
@@ -340,17 +340,17 @@ terraform destroy   # type 'yes' — deletes ALL AWS resources
 
 | Component           | Status                                                    |
 | ------------------- | --------------------------------------------------------- |
-| Eligibility Engine  | **REAL** — 147 verified govt schemes, 7-dimension scoring |
-| Arbitrage Detection | **REAL** — actual scheme comparison logic                 |
-| Scheme Data         | **REAL** — all names from official govt sources           |
-| Frontend PWA        | **REAL** — service worker, offline DB, Tailwind UI        |
+| Eligibility Engine  | **REAL** - 147 verified govt schemes, 7-dimension scoring |
+| Arbitrage Detection | **REAL** - actual scheme comparison logic                 |
+| Scheme Data         | **REAL** - all names from official govt sources           |
+| Frontend PWA        | **REAL** - service worker, offline DB, Tailwind UI        |
 | DynamoDB storage    | In-memory locally, real DynamoDB on AWS                   |
-| Aadhaar eKYC        | **Mock** — 10 profiles (needs UIDAI partnership)          |
-| DigiLocker          | **Mock** — 10 document sets (needs OAuth API)             |
-| UPI Bank Verify     | **Mock** — 10 bank records (needs NPCI API)               |
-| Amazon Bedrock AI   | **Mock** — template strings (swap for real Bedrock)       |
-| Amazon Transcribe   | **Mock** — 3 Hindi transcripts                            |
-| Amazon SNS          | **Mock** — console log                                    |
+| Aadhaar eKYC        | **Mock** - 10 profiles (needs UIDAI partnership)          |
+| DigiLocker          | **Mock** - 10 document sets (needs OAuth API)             |
+| UPI Bank Verify     | **Mock** - 10 bank records (needs NPCI API)               |
+| Amazon Bedrock AI   | **Mock** - template strings (swap for real Bedrock)       |
+| Amazon Transcribe   | **Mock** - 3 Hindi transcripts                            |
+| Amazon SNS          | **Mock** - console log                                    |
 
 ---
 
@@ -362,9 +362,9 @@ terraform destroy   # type 'yes' — deletes ALL AWS resources
 | Backend won't start              | Use `npm run backend:dev` from the `project_files/` root (runs `ts-node` under the hood)                                                                                         |
 | Frontend shows blank page        | Make sure backend is running on port 3001 FIRST, then start frontend                                                                                                             |
 | `npm install` fails              | Delete `node_modules/` and `package-lock.json`, then `npm install` again                                                                                                         |
-| `terraform plan` — auth error    | Run `aws sts get-caller-identity` to verify credentials are configured                                                                                                           |
-| `terraform apply` — S3 name      | S3 bucket names must be globally unique. Change `project_name` in `infra/main.tf` if there's a naming conflict                                                                   |
-| DynamoDB "table not found"       | Leave `DYNAMO_AUDIT_TABLE` and `DYNAMO_APP_TABLE` unset — backend falls back to in-memory storage automatically                                                                  |
+| `terraform plan` - auth error    | Run `aws sts get-caller-identity` to verify credentials are configured                                                                                                           |
+| `terraform apply` - S3 name      | S3 bucket names must be globally unique. Change `project_name` in `infra/main.tf` if there's a naming conflict                                                                   |
+| DynamoDB "table not found"       | Leave `DYNAMO_AUDIT_TABLE` and `DYNAMO_APP_TABLE` unset - backend falls back to in-memory storage automatically                                                                  |
 | Different scheme counts than doc | Slight variations (~±3) are normal due to floating-point scoring thresholds                                                                                                      |
 
 ---
@@ -373,18 +373,18 @@ terraform destroy   # type 'yes' — deletes ALL AWS resources
 
 ```
 project_files/
-├── backend/           # Node.js + TypeScript — Lambda handler + local server
-├── frontend/          # React 18 + Vite + Tailwind PWA — 12 pages
+├── backend/           # Node.js + TypeScript - Lambda handler + local server
+├── frontend/          # React 18 + Vite + Tailwind PWA - 12 pages
 ├── shared/            # TypeScript types shared between backend/frontend
 ├── data/              # 147 verified government scheme definitions
-├── infra/             # Terraform AWS config (optional — only for cloud deploy)
+├── infra/             # Terraform AWS config (optional - only for cloud deploy)
 ├── package.json       # npm workspaces config
 ├── README.md          # Full project documentation (architecture, API, tech stack)
-└── SETUP_AND_DEPLOY.md  # This file — setup + deployment guide
+└── SETUP_AND_DEPLOY.md  # This file - setup + deployment guide
 ```
 
 **Files you can safely ignore/delete:**
 
-- `node_modules/` — Auto-generated by `npm install`
-- `package-lock.json` — Keep in git, auto-generated
-- `supporting_files/` — Internal planning docs (product.md, tech.md, etc.)
+- `node_modules/` - Auto-generated by `npm install`
+- `package-lock.json` - Keep in git, auto-generated
+- `supporting_files/` - Internal planning docs (product.md, tech.md, etc.)
