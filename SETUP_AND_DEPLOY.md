@@ -151,9 +151,9 @@ curl -s -X POST http://localhost:3001/api/eligibility \
 
 ---
 
-## PART 2: AWS Cloud Deployment (Optional)
+## PART 2: AWS Cloud Deployment 
 
-> **Only needed if you want to deploy to the cloud.** The local demo above is fully functional without any AWS account.
+> **Only needed if you want to deploy to the cloud.**
 
 ### Step 1 - Create an AWS Account
 
