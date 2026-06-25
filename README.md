@@ -6,7 +6,7 @@
 
 **Rs.2.68 Lakh Crore** in welfare benefits go unclaimed every year in India.
 **HaqDaari** ensures no eligible citizen is left behind.
-
+ 
 [![Built with AWS](https://img.shields.io/badge/Built%20with-AWS-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://aws.amazon.com)
 [![Amazon Bedrock](https://img.shields.io/badge/AI-Amazon%20Bedrock-8B5CF6?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/bedrock/)
 [![India Stack](https://img.shields.io/badge/India%20Stack-Aadhaar%20%7C%20DigiLocker-138808?style=for-the-badge)](https://indiastack.org/)
